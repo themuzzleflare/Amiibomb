@@ -30,7 +30,7 @@ extension NFCMiFareTagError: LocalizedError {
     case .eepromWriteError:
       return "EEPROM Write Error"
     case .unknownError:
-      return "Unknown Error"
+      return "Unknown NFCMiFareTag Error"
     }
   }
 }

@@ -7,7 +7,6 @@
 
 import Foundation
 import CryptoKit
-import CryptoSwift
 
 struct TagKey: Codable {
   private let data: Data
@@ -19,7 +18,7 @@ struct TagKey: Codable {
   var xorPad: Data { return data.subdata(in: 48..<80) }
   
   init?(data: Data) {
-    guard data.count == 80, data.startIndex == 0 else {
+    guard data.count == NFCByte.keyFileSize, data.startIndex == 0 else {
       return nil
     }
     

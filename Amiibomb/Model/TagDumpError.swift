@@ -9,6 +9,7 @@ import Foundation
 
 enum TagDumpError: Error {
   case invalidUID
+  case unknownError
 }
 
 extension TagDumpError: LocalizedError {
@@ -16,6 +17,8 @@ extension TagDumpError: LocalizedError {
     switch self {
     case .invalidUID:
       return "Invalid UID"
+    case .unknownError:
+      return "Unknown Error"
     }
   }
 }

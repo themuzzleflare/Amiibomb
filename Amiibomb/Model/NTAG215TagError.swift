@@ -18,7 +18,7 @@ extension NTAG215TagError: LocalizedError {
     case .invalidTagType:
       return "Invalid Tag Type"
     case .unknownError:
-      return "Unknown Error"
+      return "Unknown NTAG215Tag Error"
     }
   }
 }

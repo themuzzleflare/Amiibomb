@@ -11,7 +11,7 @@ import CryptoSwift
 
 extension NFCMiFareTag {
   func getVersion() async throws -> NFCMiFareTagVersionInfo {
-    let data = try await sendMiFareCommand(commandPacket: Data([0x60]))
+    let data = try await sendMiFareCommand(commandPacket: Data([NFCByte.cmdGetVersion]))
     
     if let versionInfo = NFCMiFareTagVersionInfo(data: data) {
       return versionInfo
@@ -27,7 +27,7 @@ extension NFCMiFareTag {
   private func _fastRead(start: UInt8, end: UInt8, batchSize: UInt8, accumulatedData: Data) async throws -> Data {
     let batchEnd = min(start + batchSize - 1, end)
     
-    let data = try await sendMiFareCommand(commandPacket: Data([0x3A, start, batchEnd]))
+    let data = try await sendMiFareCommand(commandPacket: Data([NFCByte.cmdFastRead, start, batchEnd]))
     let accumulatedData = accumulatedData + data
     
     if batchEnd < end {
@@ -42,7 +42,7 @@ extension NFCMiFareTag {
       throw NFCMiFareTagError.invalidData
     }
     
-    let commandPacket = Data([0xA2, UInt8(page)]) + data
+    let commandPacket = Data([NFCByte.cmdWrite, UInt8(page)]) + data
     
     let data = try await sendMiFareCommand(commandPacket: commandPacket)
     
@@ -66,12 +66,15 @@ extension NFCMiFareTag {
     }
   }
   
-  func write(batch: [(page: Int, data: Data)], session: NFCTagReaderSession) async throws {
+  func write(batch: [(page: Int, data: Data)], session: NFCTagReaderSession, progressCounter: Int = 0) async throws {
     if let write = batch.first {
-      session.alertMessage = "Writing page \(write.page.description)"
+      let progress = Float(progressCounter) / Float(135)
+      let progressString = String(format: "%.2f", progress * 100) + "%"
+      
+      session.alertMessage = "Writing: \(progressString)"
       
       try await self.write(page: write.page, data: write.data)
-      try await self.write(batch: Array(batch[1..<batch.count]), session: session)
+      try await self.write(batch: Array(batch[1..<batch.count]), session: session, progressCounter: progressCounter + 1)
     } else {
       return
     }

@@ -13,11 +13,11 @@ struct TagDump: Codable, Equatable {
   let data: Data
   
   init?(data: Data) {
-    guard data.count >= 532 else {
+    guard data.count >= NFCByte.tagFileSize else {
       return nil
     }
     
-    self.data = data.subdata(in: 0..<min(532, data.count))
+    self.data = data
   }
   
   static func password(uid: TagUID) throws -> Data {
@@ -51,6 +51,25 @@ struct TagDump: Codable, Equatable {
   
   private var keygenSalt: Data {
     return data.subdata(in: 96..<128)
+  }
+  
+  func amiitoolPatchedDump(withUID newUID: TagUID) throws -> TagDump {
+    guard newUID.count == 9 else {
+      throw TagDumpError.invalidUID
+    }
+    
+    guard let masterKey = Bundle.main.path(forResource: "key_retail", ofType: "bin") else {
+      throw TagDumpError.unknownError
+    }
+    
+    let amiitool = Amiitool(path: masterKey)
+    
+    var decrypted = amiitool.unpack(data)
+    decrypted.replaceSubrange(468..<476, with: newUID.subdata(in: 0..<8))
+    
+    let encrypted = amiitool.pack(decrypted)
+    
+    return TagDump(data: encrypted)!
   }
   
   func patchedDump(withUID newUID: TagUID, staticKey: TagKey, dataKey: TagKey) throws -> TagDump {

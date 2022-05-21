@@ -8,7 +8,7 @@
 import Foundation
 import Alamofire
 
-struct AmiiboAPI {
+enum AmiiboAPI {
   @discardableResult
   static func fetchAmiibo(head: String, tail: String) async throws -> AmiiboObject {
     return try await AF.request("https://www.amiiboapi.com/api/amiibo/", parameters: ["id": "\(head)\(tail)"])

@@ -34,7 +34,8 @@ class NTAG215Tag {
   }
   
   func patchAndWriteDump(_ originalDump: TagDump, staticKey: TagKey, dataKey: TagKey, session: NFCTagReaderSession) async throws {
-    let patchedDump = try originalDump.patchedDump(withUID: dump.uid, staticKey: staticKey, dataKey: dataKey)
+    let patchedDump = try originalDump.amiitoolPatchedDump(withUID: dump.uid)
+    //    let patchedDump = try originalDump.patchedDump(withUID: dump.uid, staticKey: staticKey, dataKey: dataKey)
     
     var writes = [(Int, Data)]()
     

@@ -71,7 +71,6 @@ final class AmiibombVC: UIViewController {
     if let documentsDir = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first,
        let contents = try? FileManager.default.contentsOfDirectory(at: documentsDir, includingPropertiesForKeys: nil) {
       return await contents.concurrentCompactMap { (url) in
-        print(url.path)
         if let data = try? Data(contentsOf: url),
            let tagDump = TagDump(data: data) {
           return try? await AmiiboAPI.fetchAmiibo(head: tagDump.headHex, tail: tagDump.tailHex)
@@ -119,7 +118,7 @@ extension AmiibombVC: UITableViewDataSource {
       config.secondaryText = amiibo.amiiboSeries
       config.imageProperties.reservedLayoutSize = CGSize(width: 64, height: 64)
       config.imageToTextPadding = 10
-      config.image = try await UIImage(data: AmiiboAPI.amiiboImage(amiiboObject: amiibo))
+      config.image = UIImage(data: try await AmiiboAPI.amiiboImage(amiiboObject: amiibo))
       cell.contentConfiguration = config
     }
     return cell
@@ -196,8 +195,6 @@ extension AmiibombVC: UIDocumentPickerDelegate {
           refreshAmiibos()
         }
       } catch {
-        print(type(of: error))
-        
         var errorDescription: String {
           switch error {
           case let AFError.sessionTaskFailed(baseError):
@@ -269,8 +266,6 @@ extension AmiibombVC: NFCTagReaderSessionDelegate {
         session.alertMessage = "\(amiibo.name)\n\(amiibo.amiiboSeries)"
         session.invalidate()
       } catch {
-        print(type(of: error))
-        
         var errorDescription: String {
           switch error {
           case let AFError.sessionTaskFailed(baseError):
