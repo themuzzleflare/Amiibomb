@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct TagDump: Codable, Equatable {
+struct TagDump {
   let data: Data
   let headHex: String
   let tailHex: String

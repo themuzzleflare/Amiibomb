@@ -8,7 +8,7 @@
 import Foundation
 import CoreNFC
 
-class NTAG215Tag {
+struct NTAG215Tag {
   let tag: NFCMiFareTag
   let versionInfo: NFCMiFareTagVersionInfo
   let dump: TagDump
