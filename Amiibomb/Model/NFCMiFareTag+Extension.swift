@@ -7,11 +7,10 @@
 
 import Foundation
 import CoreNFC
-import CryptoSwift
 
 extension NFCMiFareTag {
   func getVersion() async throws -> NFCMiFareTagVersionInfo {
-    let data = try await sendMiFareCommand(commandPacket: Data([NFCByte.cmdGetVersion]))
+    let data = try await sendMiFareCommand(commandPacket: Data([NFCByte.cmdGetVersion.rawValue]))
     
     if let versionInfo = NFCMiFareTagVersionInfo(data: data) {
       return versionInfo
@@ -21,17 +20,17 @@ extension NFCMiFareTag {
   }
   
   func fastRead(start: UInt8, end: UInt8, batchSize: UInt8) async throws -> Data {
-    return try await _fastRead(start: start, end: end, batchSize: batchSize, accumulatedData: Data())
+    return try await fastReadInternal(start: start, end: end, batchSize: batchSize, accumulatedData: Data())
   }
   
-  private func _fastRead(start: UInt8, end: UInt8, batchSize: UInt8, accumulatedData: Data) async throws -> Data {
+  private func fastReadInternal(start: UInt8, end: UInt8, batchSize: UInt8, accumulatedData: Data) async throws -> Data {
     let batchEnd = min(start + batchSize - 1, end)
     
-    let data = try await sendMiFareCommand(commandPacket: Data([NFCByte.cmdFastRead, start, batchEnd]))
+    let data = try await sendMiFareCommand(commandPacket: Data([NFCByte.cmdFastRead.rawValue, start, batchEnd]))
     let accumulatedData = accumulatedData + data
     
     if batchEnd < end {
-      return try await self._fastRead(start: batchEnd + 1, end: end, batchSize: batchSize, accumulatedData: accumulatedData)
+      return try await self.fastReadInternal(start: batchEnd + 1, end: end, batchSize: batchSize, accumulatedData: accumulatedData)
     } else {
       return accumulatedData
     }
@@ -42,7 +41,7 @@ extension NFCMiFareTag {
       throw NFCMiFareTagError.invalidData
     }
     
-    let commandPacket = Data([NFCByte.cmdWrite, UInt8(page)]) + data
+    let commandPacket = Data([NFCByte.cmdWrite.rawValue, UInt8(page)]) + data
     
     let data = try await sendMiFareCommand(commandPacket: commandPacket)
     
@@ -66,15 +65,21 @@ extension NFCMiFareTag {
     }
   }
   
-  func write(batch: [(page: Int, data: Data)], session: NFCTagReaderSession, progressCounter: Int = 0) async throws {
+  func write(batch: [(page: Int, data: Data)],
+             session: NFCTagReaderSession,
+             progressCounter: Float = 0) async throws {
     if let write = batch.first {
-      let progress = Float(progressCounter) / Float(135)
+      let progress = progressCounter / 135
       let progressString = String(format: "%.2f", progress * 100) + "%"
+      let alertMessage = "Writing: \(progressString)"
       
-      session.alertMessage = "Writing: \(progressString)"
+      session.alertMessage = alertMessage
+      print(alertMessage)
       
       try await self.write(page: write.page, data: write.data)
-      try await self.write(batch: Array(batch[1..<batch.count]), session: session, progressCounter: progressCounter + 1)
+      try await self.write(batch: Array(batch[1..<batch.count]),
+                           session: session,
+                           progressCounter: progressCounter + 1)
     } else {
       return
     }

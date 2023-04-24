@@ -7,12 +7,10 @@
 
 import Foundation
 
-enum NTAG215TagError: Error {
+enum NTAG215TagError: LocalizedError {
   case invalidTagType
   case unknownError
-}
-
-extension NTAG215TagError: LocalizedError {
+  
   var errorDescription: String? {
     switch self {
     case .invalidTagType:

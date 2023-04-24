@@ -8,11 +8,15 @@
 import Foundation
 import CoreNFC
 
-class WriteAmiiboDelegate: NSObject, NFCTagReaderSessionDelegate {
+final class WriteAmiiboDelegate: NSObject, NFCTagReaderSessionDelegate {
   private let amiiboBin: TagDump
   
   init(amiiboBin: TagDump) {
     self.amiiboBin = amiiboBin
+  }
+  
+  deinit {
+    print("deinit WriteAmiiboDelegate")
   }
   
   func tagReaderSessionDidBecomeActive(_ session: NFCTagReaderSession) {
@@ -40,23 +44,12 @@ class WriteAmiiboDelegate: NSObject, NFCTagReaderSessionDelegate {
         print("Tag initialised")
         print("Locked: \(ntag215tag.isLocked.description)")
         
-        guard let staticKeyUrl = Bundle.main.url(forResource: "locked-secret", withExtension: "bin"),
-              let dataKeyUrl = Bundle.main.url(forResource: "unfixed-info", withExtension: "bin"),
-              let staticKeyData = try? Data(contentsOf: staticKeyUrl),
-              let dataKeyData = try? Data(contentsOf: dataKeyUrl),
-              let staticKey = TagKey(data: staticKeyData),
-              let dataKey = TagKey(data: dataKeyData)
-        else {
-          session.invalidate(errorMessage: "Error reading provided files. Please try again.")
-          return
-        }
-        
         guard !ntag215tag.isLocked else {
           session.invalidate(errorMessage: "Tag is locked. Please use an unlocked tag.")
           return
         }
         
-        try await ntag215tag.patchAndWriteDump(amiiboBin, staticKey: staticKey, dataKey: dataKey, session: session)
+        try await ntag215tag.patchAndWriteDump(amiiboBin, session: session)
         
         session.alertMessage = "Success!"
         session.invalidate()

@@ -8,20 +8,25 @@
 import Foundation
 
 struct NFCMiFareTagVersionInfo {
-  private let data: Data
-  
-  var header: UInt8 { return data[0] }
-  var vendorID: UInt8 { return data[1] }
-  var productType: UInt8 { return data[2] }
-  var productSubtype: UInt8 { return data[3] }
-  var majorProductVersion: UInt8 { return data[4] }
-  var minorProductVersion: UInt8 { return data[5] }
-  var storageSize: UInt8 { return data[6] }
-  var protocolType: UInt8 { return data[7] }
+  let header: UInt8
+  let vendorID: UInt8
+  let productType: UInt8
+  let productSubtype: UInt8
+  let majorProductVersion: UInt8
+  let minorProductVersion: UInt8
+  let storageSize: UInt8
+  let protocolType: UInt8
   
   init?(data: Data) {
     guard data.count == 8 else { return nil }
-    self.data = data
+    self.header = data[0]
+    self.vendorID = data[1]
+    self.productType = data[2]
+    self.productSubtype = data[3]
+    self.majorProductVersion = data[4]
+    self.minorProductVersion = data[5]
+    self.storageSize = data[6]
+    self.protocolType = data[7]
   }
 }
 

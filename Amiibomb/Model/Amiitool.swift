@@ -8,38 +8,39 @@
 import Foundation
 import amiitool
 
-let NTAG215_SIZE = 540
+typealias AmiiboKeys = UnsafeMutablePointer<nfc3d_amiibo_keys>
+typealias OriginalTag = UnsafePointer<UInt8>
+typealias ModifiedTag = UnsafeMutablePointer<UInt8>
 
 struct Amiitool {
-  var amiiboKeys = UnsafeMutablePointer<nfc3d_amiibo_keys>.allocate(capacity: 1)
+  let NTAG215_SIZE = 540
+  let amiiboKeys: AmiiboKeys = .allocate(capacity: 1)
   
-  init(path: String) {
-    if (!nfc3d_amiibo_load_keys(amiiboKeys, path)) {
-      print("Could not load keys from \(path)")
-    } else {
-      print("Loaded keys")
+  init(path: String) throws {
+    if !nfc3d_amiibo_load_keys(amiiboKeys, path) {
+      print("Could not load keys from \"\(path)\"")
+      throw AmiitoolError.loadKeysFailed
     }
   }
   
-  func unpack(_ tag: Data) -> Data {
-    let unsafeTag = tag.unsafeBytes
-    let output = UnsafeMutablePointer<UInt8>.allocate(capacity: NTAG215_SIZE)
+  func unpack(_ data: Data) throws -> Data {
+    let original: OriginalTag = data.withUnsafeBytes { $0 }
+    let modified: ModifiedTag = .allocate(capacity: NTAG215_SIZE)
     
-    if (!nfc3d_amiibo_unpack(amiiboKeys, unsafeTag, output)) {
+    if !nfc3d_amiibo_unpack(amiiboKeys, original, modified) {
       print("!!! WARNING !!!: Tag signature was NOT valid")
-    } else {
-      print("Unpacked tag")
+      throw AmiitoolError.unpackFailed
     }
     
-    return Data(bytes: output, count: NTAG215_SIZE)
+    return .init(bytes: modified, count: NTAG215_SIZE)
   }
   
-  func pack(_ plain: Data) -> Data {
-    let unsafePlain = plain.unsafeBytes
-    let newImage = UnsafeMutablePointer<UInt8>.allocate(capacity: NTAG215_SIZE)
+  func pack(_ data: Data) -> Data {
+    let original: OriginalTag = data.withUnsafeBytes { $0 }
+    let modified: ModifiedTag = .allocate(capacity: NTAG215_SIZE)
     
-    nfc3d_amiibo_pack(amiiboKeys, unsafePlain, newImage)
+    nfc3d_amiibo_pack(amiiboKeys, original, modified)
     
-    return Data(bytes: newImage, count: NTAG215_SIZE)
+    return .init(bytes: modified, count: NTAG215_SIZE)
   }
 }

@@ -7,7 +7,6 @@ target 'Amiibomb' do
 
   # Pods for Amiibomb
   pod 'Alamofire'
-  pod 'CryptoSwift'
   pod 'SnapKit'
 
 end

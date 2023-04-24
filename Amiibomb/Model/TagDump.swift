@@ -7,100 +7,46 @@
 
 import Foundation
 
-typealias TagUID = Data
-
 struct TagDump: Codable, Equatable {
   let data: Data
+  let headHex: String
+  let tailHex: String
+  let uid: Data
   
-  init?(data: Data) {
-    guard data.count >= NFCByte.tagFileSize else {
-      return nil
-    }
+  init(data: Data) throws {
+    guard data.count >= 532 else { throw TagDumpError.invalidDataCount }
     
     self.data = data
+    self.headHex = data[84..<88].map { String(format: "%02hhx", $0) }.joined()
+    self.tailHex = data[88..<92].map { String(format: "%02hhx", $0) }.joined()
+    self.uid = data.subdata(in: 0..<9)
   }
   
-  static func password(uid: TagUID) throws -> Data {
-    guard uid.count == 9 else {
-      throw TagDumpError.invalidUID
-    }
+  static func pwd(uid: Data) throws -> Data {
+    guard uid.count == 9 else { throw TagDumpError.invalidUID }
     
-    var password = Data(repeating: 0, count: 4)
-    password[0] = 0xAA ^ (uid[1] ^ uid[4])
-    password[1] = 0x55 ^ (uid[2] ^ uid[5])
-    password[2] = 0xAA ^ (uid[4] ^ uid[6])
-    password[3] = 0x55 ^ (uid[5] ^ uid[7])
-    return password
+    var pwd = Data(repeating: 0, count: 4)
+    pwd[0] = 0xAA ^ (uid[1] ^ uid[4])
+    pwd[1] = 0x55 ^ (uid[2] ^ uid[5])
+    pwd[2] = 0xAA ^ (uid[4] ^ uid[6])
+    pwd[3] = 0x55 ^ (uid[5] ^ uid[7])
+    return pwd
   }
   
-  var headHex: String {
-    return data[84..<88].map { String(format: "%02hhx", $0) }.joined()
-  }
-  
-  var tailHex: String {
-    return data[88..<92].map { String(format: "%02hhx", $0) }.joined()
-  }
-  
-  var uid: TagUID {
-    return data.subdata(in: 0..<9)
-  }
-  
-  private var writeCounter: Data {
-    return data.subdata(in: 17..<19)
-  }
-  
-  private var keygenSalt: Data {
-    return data.subdata(in: 96..<128)
-  }
-  
-  func amiitoolPatchedDump(withUID newUID: TagUID) throws -> TagDump {
-    guard newUID.count == 9 else {
-      throw TagDumpError.invalidUID
-    }
+  func patchedDump(withUID newUID: Data) throws -> TagDump {
+    guard newUID.count == 9 else { throw TagDumpError.invalidUID }
     
     guard let masterKey = Bundle.main.path(forResource: "key_retail", ofType: "bin") else {
-      throw TagDumpError.unknownError
+      throw TagDumpError.keyFileNotFound
     }
     
-    let amiitool = Amiitool(path: masterKey)
+    let amiitool = try Amiitool(path: masterKey)
     
-    var decrypted = amiitool.unpack(data)
+    var decrypted = try amiitool.unpack(data)
     decrypted.replaceSubrange(468..<476, with: newUID.subdata(in: 0..<8))
     
     let encrypted = amiitool.pack(decrypted)
     
-    return TagDump(data: encrypted)!
-  }
-  
-  func patchedDump(withUID newUID: TagUID, staticKey: TagKey, dataKey: TagKey) throws -> TagDump {
-    guard newUID.count == 9 else {
-      throw TagDumpError.invalidUID
-    }
-    
-    // Decrypt the data
-    let decryptDataKeys = dataKey.derivedKey(uid: uid, writeCounter: writeCounter, salt: keygenSalt)
-    let decryptedData = try decryptDataKeys.decrypt(data.subdata(in: 20..<52) + data.subdata(in: 160..<520))
-    
-    var newData = Data(data)
-    newData[0..<9] = newUID
-    newData[20..<52] = decryptedData[0..<32]
-    newData[160..<520] = decryptedData[32..<392]
-    
-    // Generated tag HMAC
-    let encryptTagKeys = staticKey.derivedKey(uid: newUID, writeCounter: writeCounter, salt: keygenSalt)
-    let tagHMAC = encryptTagKeys.hmac(newData.subdata(in: 0..<8) + newData.subdata(in: 84..<128))
-    newData[52..<84] = tagHMAC
-    
-    // Generated data HMAC
-    let encryptDataKeys = dataKey.derivedKey(uid: newUID, writeCounter: writeCounter, salt: keygenSalt)
-    let dataHMAC = encryptDataKeys.hmac(newData.subdata(in: 17..<52) + newData.subdata(in: 160..<520) + newData.subdata(in: 52..<84) + newData.subdata(in: 0..<8) + newData.subdata(in: 84..<128))
-    newData[128..<160] = dataHMAC
-    
-    // Re-encrypt the data
-    let encryptedData = try encryptDataKeys.decrypt(decryptedData)
-    newData[20..<52] = encryptedData[0..<32]
-    newData[160..<520] = encryptedData[32..<392]
-    
-    return TagDump(data: newData)!
+    return try TagDump(data: encrypted)
   }
 }

@@ -13,6 +13,7 @@ import CollectionConcurrencyKit
 final class AmiibombVC: UIViewController {
   private var tagReaderSession: NFCTagReaderSession?
   private var tagWriterSession: NFCTagReaderSession?
+  private var readDelegate: ReadAmiiboDelegate?
   private var writeDelegate: WriteAmiiboDelegate?
   
   private let tableView = UITableView()
@@ -72,7 +73,7 @@ final class AmiibombVC: UIViewController {
        let contents = try? FileManager.default.contentsOfDirectory(at: documentsDir, includingPropertiesForKeys: nil) {
       return await contents.concurrentCompactMap { (url) in
         if let data = try? Data(contentsOf: url),
-           let tagDump = TagDump(data: data) {
+           let tagDump = try? TagDump(data: data) {
           return try? await AmiiboAPI.fetchAmiibo(head: tagDump.headHex, tail: tagDump.tailHex)
         } else {
           return nil
@@ -97,9 +98,13 @@ final class AmiibombVC: UIViewController {
       return
     }
     
-    tagReaderSession = NFCTagReaderSession(pollingOption: .iso14443, delegate: self)
-    tagReaderSession?.alertMessage = "Hold amiibo/tag to back of device."
-    tagReaderSession?.begin()
+    readDelegate = ReadAmiiboDelegate(self)
+    
+    if let readDelegate {
+      tagReaderSession = NFCTagReaderSession(pollingOption: .iso14443, delegate: readDelegate)
+      tagReaderSession?.alertMessage = "Hold amiibo/tag to back of device."
+      tagReaderSession?.begin()
+    }
   }
 }
 
@@ -116,7 +121,7 @@ extension AmiibombVC: UITableViewDataSource {
       var config = UIListContentConfiguration.subtitleCell()
       config.text = amiibo.name
       config.secondaryText = amiibo.amiiboSeries
-      config.imageProperties.reservedLayoutSize = CGSize(width: 64, height: 64)
+      config.imageProperties.reservedLayoutSize = .init(width: 64, height: 64)
       config.imageToTextPadding = 10
       config.image = UIImage(data: try await AmiiboAPI.amiiboImage(amiiboObject: amiibo))
       cell.contentConfiguration = config
@@ -148,7 +153,7 @@ extension AmiibombVC: UITableViewDelegate {
        let contents = try? FileManager.default.contentsOfDirectory(at: documentsDir, includingPropertiesForKeys: nil) {
       let dumps: [TagDump] = contents.compactMap { (url) in
         if let data = try? Data(contentsOf: url),
-           let tagDump = TagDump(data: data) {
+           let tagDump = try? TagDump(data: data) {
           return tagDump
         } else {
           return nil
@@ -158,7 +163,7 @@ extension AmiibombVC: UITableViewDelegate {
       if let dumpToWrite = dumps.first(where: { $0.headHex == amiibo.head && $0.tailHex == amiibo.tail }) {
         writeDelegate = WriteAmiiboDelegate(amiiboBin: dumpToWrite)
         
-        if let writeDelegate = writeDelegate {
+        if let writeDelegate {
           tagWriterSession = NFCTagReaderSession(pollingOption: .iso14443, delegate: writeDelegate)
           tagWriterSession?.alertMessage = "\(amiibo.name) selected. Hold empty tag to back of device."
           tagWriterSession?.begin()
@@ -174,7 +179,7 @@ extension AmiibombVC: UIDocumentPickerDelegate {
     
     guard let url = urls.first,
           let data = try? Data(contentsOf: url),
-          let tagDump = TagDump(data: data)
+          let tagDump = try? TagDump(data: data)
     else {
       let alertController = UIAlertController(title: "Error",
                                               message: "Invalid amiibo file. Please select a valid file.",
@@ -217,68 +222,5 @@ extension AmiibombVC: UIDocumentPickerDelegate {
   
   func documentPickerWasCancelled(_ controller: UIDocumentPickerViewController) {
     print(#function)
-  }
-}
-
-extension AmiibombVC: NFCTagReaderSessionDelegate {
-  func tagReaderSessionDidBecomeActive(_ session: NFCTagReaderSession) {
-    print(#function)
-  }
-  
-  func tagReaderSession(_ session: NFCTagReaderSession, didInvalidateWithError error: Error) {
-    print(#function)
-  }
-  
-  func tagReaderSession(_ session: NFCTagReaderSession, didDetect tags: [NFCTag]) {
-    print(#function)
-    
-    guard let tag = tags.first, case let .miFare(miFareTag) = tag, miFareTag.mifareFamily == .ultralight else {
-      session.invalidate(errorMessage: "Invalid tag type.")
-      return
-    }
-    
-    Task {
-      do {
-        try await session.connect(to: tag)
-        
-        let ntag215tag = try await NTAG215Tag(tag: miFareTag)
-        
-        print("Tag initialised")
-        print("Locked: \(ntag215tag.isLocked.description)")
-        
-        guard ntag215tag.isLocked else {
-          session.alertMessage = "This is a blank tag. It can be used to write amiibo data."
-          session.invalidate()
-          return
-        }
-        
-        let amiibo = try await AmiiboAPI.fetchAmiibo(head: ntag215tag.dump.headHex, tail: ntag215tag.dump.tailHex)
-        
-        if let documentsDir = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first {
-          let url = documentsDir.appendingPathComponent("\(amiibo.head)\(amiibo.tail).bin")
-          try ntag215tag.dump.data.write(to: url)
-        }
-        
-        dump(amiibo)
-        
-        refreshAmiibos()
-        
-        session.alertMessage = "\(amiibo.name)\n\(amiibo.amiiboSeries)"
-        session.invalidate()
-      } catch {
-        var errorDescription: String {
-          switch error {
-          case let AFError.sessionTaskFailed(baseError):
-            return baseError.localizedDescription
-          case AFError.responseValidationFailed:
-            return "Amiibo not recognised. Please try another amiibo/tag."
-          default:
-            return error.localizedDescription
-          }
-        }
-        
-        session.invalidate(errorMessage: errorDescription)
-      }
-    }
   }
 }

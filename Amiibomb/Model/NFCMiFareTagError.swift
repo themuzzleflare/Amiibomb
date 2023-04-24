@@ -7,16 +7,14 @@
 
 import Foundation
 
-enum NFCMiFareTagError: Error {
+enum NFCMiFareTagError: LocalizedError {
   case invalidData
   case invalidArgument
   case crcError
   case invalidAuthentication
   case eepromWriteError
   case unknownError
-}
-
-extension NFCMiFareTagError: LocalizedError {
+  
   var errorDescription: String? {
     switch self {
     case .invalidData:

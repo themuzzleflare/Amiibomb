@@ -17,15 +17,11 @@ class NTAG215Tag {
   init(tag: NFCMiFareTag) async throws {
     let versionInfo = try await tag.getVersion()
     
-    guard versionInfo.isNFC215 else {
-      throw NTAG215TagError.invalidTagType
-    }
+    guard versionInfo.isNFC215 else { throw NTAG215TagError.invalidTagType }
     
     let data = try await tag.fastRead(start: 0, end: 0x86, batchSize: 0x20)
     
-    guard let dump = TagDump(data: data) else {
-      throw NTAG215TagError.unknownError
-    }
+    let dump = try TagDump(data: data)
     
     self.tag = tag
     self.versionInfo = versionInfo
@@ -33,9 +29,8 @@ class NTAG215Tag {
     self.isLocked = data[10] != 0 && data[11] != 0
   }
   
-  func patchAndWriteDump(_ originalDump: TagDump, staticKey: TagKey, dataKey: TagKey, session: NFCTagReaderSession) async throws {
-    let patchedDump = try originalDump.amiitoolPatchedDump(withUID: dump.uid)
-    //    let patchedDump = try originalDump.patchedDump(withUID: dump.uid, staticKey: staticKey, dataKey: dataKey)
+  func patchAndWriteDump(_ originalDump: TagDump, session: NFCTagReaderSession) async throws {
+    let patchedDump = try originalDump.patchedDump(withUID: dump.uid)
     
     var writes = [(Int, Data)]()
     
@@ -46,7 +41,7 @@ class NTAG215Tag {
     }
     
     writes += [(134, Data([0x80, 0x80, 0, 0]))] // PACK / RFUI
-    writes += [(133, try TagDump.password(uid: dump.uid))] // Password
+    writes += [(133, try TagDump.pwd(uid: dump.uid))] // Password
     writes += [(2, Data([patchedDump.data[8], patchedDump.data[9], 0x0F, 0xE0]))] // Lock Bits
     writes += [(130, Data([0x01, 0x00, 0x0F, 0x00]))] // Dynamic Lock Bits
     writes += [(131, Data([0x00, 0x00, 0x00, 0x04]))] // Config
