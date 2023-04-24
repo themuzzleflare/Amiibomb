@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		05F2F164B39F693D76904356 /* Pods_Amiibomb.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BEFFDF68AC776CEEE18D9704 /* Pods_Amiibomb.framework */; };
+		7A02461F29F6213800E437FA /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = 7A02461E29F6213800E437FA /* Alamofire */; };
 		7A12F655281E3FAB00C538F4 /* NFCMiFareTag+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A12F654281E3FAB00C538F4 /* NFCMiFareTag+Extension.swift */; };
 		7A13DFC7282115BC0004EDCD /* unfixed-info.bin in Resources */ = {isa = PBXBuildFile; fileRef = 7A13DFC5282115BC0004EDCD /* unfixed-info.bin */; };
 		7A13DFC8282115BC0004EDCD /* locked-secret.bin in Resources */ = {isa = PBXBuildFile; fileRef = 7A13DFC6282115BC0004EDCD /* locked-secret.bin */; };
@@ -39,7 +39,6 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		060CC0746182D19FC5142F53 /* Pods-Amiibomb.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Amiibomb.debug.xcconfig"; path = "Target Support Files/Pods-Amiibomb/Pods-Amiibomb.debug.xcconfig"; sourceTree = "<group>"; };
 		7A12F654281E3FAB00C538F4 /* NFCMiFareTag+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NFCMiFareTag+Extension.swift"; sourceTree = "<group>"; };
 		7A13DFC5282115BC0004EDCD /* unfixed-info.bin */ = {isa = PBXFileReference; lastKnownFileType = archive.macbinary; path = "unfixed-info.bin"; sourceTree = "<group>"; };
 		7A13DFC6282115BC0004EDCD /* locked-secret.bin */ = {isa = PBXFileReference; lastKnownFileType = archive.macbinary; path = "locked-secret.bin"; sourceTree = "<group>"; };
@@ -69,8 +68,6 @@
 		7AD4966A28221DCE00BC1E89 /* key_retail.bin */ = {isa = PBXFileReference; lastKnownFileType = archive.macbinary; path = key_retail.bin; sourceTree = "<group>"; };
 		7AD4966C28221F5F00BC1E89 /* NTAG215TagError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NTAG215TagError.swift; sourceTree = "<group>"; };
 		7AD8FEE528373CBC005442BC /* Amiitool.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Amiitool.swift; sourceTree = "<group>"; };
-		BEFFDF68AC776CEEE18D9704 /* Pods_Amiibomb.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Amiibomb.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		D660A2BB7776601CC3E0FBBF /* Pods-Amiibomb.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Amiibomb.release.xcconfig"; path = "Target Support Files/Pods-Amiibomb/Pods-Amiibomb.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -78,8 +75,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				05F2F164B39F693D76904356 /* Pods_Amiibomb.framework in Frameworks */,
 				7A714A072822131200151A4D /* CloudKit.framework in Frameworks */,
+				7A02461F29F6213800E437FA /* Alamofire in Frameworks */,
 				7A67E62A29F552570026EB70 /* amiitool in Frameworks */,
 				7AFF5E652829D8C90052A410 /* CollectionConcurrencyKit in Frameworks */,
 			);
@@ -103,7 +100,6 @@
 			children = (
 				7AB4217C281CD91100FB63C1 /* Amiibomb */,
 				7AB4217B281CD91100FB63C1 /* Products */,
-				EBD74BA12C78BE3DEEAE31F7 /* Pods */,
 				CCB9A47CDE665E71800A086D /* Frameworks */,
 			);
 			sourceTree = "<group>";
@@ -160,18 +156,8 @@
 			isa = PBXGroup;
 			children = (
 				7A714A062822131200151A4D /* CloudKit.framework */,
-				BEFFDF68AC776CEEE18D9704 /* Pods_Amiibomb.framework */,
 			);
 			name = Frameworks;
-			sourceTree = "<group>";
-		};
-		EBD74BA12C78BE3DEEAE31F7 /* Pods */ = {
-			isa = PBXGroup;
-			children = (
-				060CC0746182D19FC5142F53 /* Pods-Amiibomb.debug.xcconfig */,
-				D660A2BB7776601CC3E0FBBF /* Pods-Amiibomb.release.xcconfig */,
-			);
-			path = Pods;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -181,11 +167,9 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 7AB4218E281CD91300FB63C1 /* Build configuration list for PBXNativeTarget "Amiibomb" */;
 			buildPhases = (
-				035E7130D13D776E1557F916 /* [CP] Check Pods Manifest.lock */,
 				7AB42176281CD91100FB63C1 /* Sources */,
 				7AB42177281CD91100FB63C1 /* Frameworks */,
 				7AB42178281CD91100FB63C1 /* Resources */,
-				1638FDF7CE34A55141105492 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -195,6 +179,7 @@
 			packageProductDependencies = (
 				7AFF5E642829D8C90052A410 /* CollectionConcurrencyKit */,
 				7A67E62929F552570026EB70 /* amiitool */,
+				7A02461E29F6213800E437FA /* Alamofire */,
 			);
 			productName = Amiibomb;
 			productReference = 7AB4217A281CD91100FB63C1 /* Amiibomb.app */;
@@ -227,6 +212,7 @@
 			packageReferences = (
 				7AFF5E632829D8C90052A410 /* XCRemoteSwiftPackageReference "CollectionConcurrencyKit" */,
 				7A67E62829F552570026EB70 /* XCRemoteSwiftPackageReference "amiitool" */,
+				7A02461D29F6213800E437FA /* XCRemoteSwiftPackageReference "Alamofire" */,
 			);
 			productRefGroup = 7AB4217B281CD91100FB63C1 /* Products */;
 			projectDirPath = "";
@@ -251,48 +237,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
-
-/* Begin PBXShellScriptBuildPhase section */
-		035E7130D13D776E1557F916 /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-Amiibomb-checkManifestLockResult.txt",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
-		1638FDF7CE34A55141105492 /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-Amiibomb/Pods-Amiibomb-frameworks-${CONFIGURATION}-input-files.xcfilelist",
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-Amiibomb/Pods-Amiibomb-frameworks-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Amiibomb/Pods-Amiibomb-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		7AB42176281CD91100FB63C1 /* Sources */ = {
@@ -452,7 +396,6 @@
 		};
 		7AB4218F281CD91300FB63C1 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 060CC0746182D19FC5142F53 /* Pods-Amiibomb.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -475,7 +418,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 2.0;
+				MARKETING_VERSION = 3.1;
 				PRODUCT_BUNDLE_IDENTIFIER = cloud.tavitian.amiibomb;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -486,7 +429,6 @@
 		};
 		7AB42190281CD91300FB63C1 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = D660A2BB7776601CC3E0FBBF /* Pods-Amiibomb.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -509,7 +451,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 2.0;
+				MARKETING_VERSION = 3.1;
 				PRODUCT_BUNDLE_IDENTIFIER = cloud.tavitian.amiibomb;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -542,6 +484,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		7A02461D29F6213800E437FA /* XCRemoteSwiftPackageReference "Alamofire" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/Alamofire/Alamofire.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.0.0;
+			};
+		};
 		7A67E62829F552570026EB70 /* XCRemoteSwiftPackageReference "amiitool" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/themuzzleflare/amiitool";
@@ -561,6 +511,11 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		7A02461E29F6213800E437FA /* Alamofire */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 7A02461D29F6213800E437FA /* XCRemoteSwiftPackageReference "Alamofire" */;
+			productName = Alamofire;
+		};
 		7A67E62929F552570026EB70 /* amiitool */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 7A67E62829F552570026EB70 /* XCRemoteSwiftPackageReference "amiitool" */;

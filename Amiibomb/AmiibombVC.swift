@@ -45,14 +45,14 @@ final class AmiibombVC: UIViewController {
   
   func configureNavigation() {
     navigationItem.title = "Amiibomb"
-    navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Import",
-                                                       style: .plain,
-                                                       target: self,
-                                                       action: #selector(importButtonTapped))
-    navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Scan",
-                                                        style: .plain,
-                                                        target: self,
-                                                        action: #selector(scanButtonTapped))
+    navigationItem.leftBarButtonItem = .init(title: "Import",
+                                             style: .plain,
+                                             target: self,
+                                             action: #selector(importButtonTapped))
+    navigationItem.rightBarButtonItem = .init(title: "Scan",
+                                              style: .plain,
+                                              target: self,
+                                              action: #selector(scanButtonTapped))
   }
   
   func configureTableView() {
