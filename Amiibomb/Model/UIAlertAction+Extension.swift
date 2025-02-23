@@ -9,5 +9,5 @@ import Foundation
 import UIKit
 
 extension UIAlertAction {
-  static let dismiss = UIAlertAction(title: "Dismiss", style: .default)
+    static let dismiss = UIAlertAction(title: "Dismiss", style: .default)
 }

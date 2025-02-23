@@ -8,16 +8,16 @@
 import Foundation
 
 struct AmiiboResponse: Decodable {
-  let amiibo: AmiiboObject
+    let amiibo: AmiiboObject
 }
 
 struct AmiiboObject: Decodable {
-  let amiiboSeries: String
-  let character: String
-  let gameSeries: String
-  let head: String
-  let image: URL
-  let name: String
-  let tail: String
-  let type: String
+    let amiiboSeries: String
+    let character: String
+    let gameSeries: String
+    let head: String
+    let image: URL
+    let name: String
+    let tail: String
+    let type: String
 }

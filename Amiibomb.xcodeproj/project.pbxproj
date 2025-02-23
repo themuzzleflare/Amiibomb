@@ -3,21 +3,21 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 55;
+	objectVersion = 77;
 	objects = {
 
 /* Begin PBXBuildFile section */
 		7A02461F29F6213800E437FA /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = 7A02461E29F6213800E437FA /* Alamofire */; };
+		7A02468F29F633D400E437FA /* TagVersionError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A02468E29F633D300E437FA /* TagVersionError.swift */; };
 		7A12F655281E3FAB00C538F4 /* NFCMiFareTag+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A12F654281E3FAB00C538F4 /* NFCMiFareTag+Extension.swift */; };
 		7A13DFC7282115BC0004EDCD /* unfixed-info.bin in Resources */ = {isa = PBXBuildFile; fileRef = 7A13DFC5282115BC0004EDCD /* unfixed-info.bin */; };
 		7A13DFC8282115BC0004EDCD /* locked-secret.bin in Resources */ = {isa = PBXBuildFile; fileRef = 7A13DFC6282115BC0004EDCD /* locked-secret.bin */; };
 		7A13DFCA28211DBF0004EDCD /* TagDump.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A13DFC928211DBF0004EDCD /* TagDump.swift */; };
-		7A13DFCC28211E260004EDCD /* NTAG215Tag.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A13DFCB28211E260004EDCD /* NTAG215Tag.swift */; };
+		7A13DFCC28211E260004EDCD /* AmiiboTag.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A13DFCB28211E260004EDCD /* AmiiboTag.swift */; };
 		7A13DFD02821EFF20004EDCD /* NFCMiFareTagError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A13DFCF2821EFF20004EDCD /* NFCMiFareTagError.swift */; };
-		7A13DFD42821F0340004EDCD /* NFCMiFareTagVersionInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A13DFD32821F0340004EDCD /* NFCMiFareTagVersionInfo.swift */; };
+		7A13DFD42821F0340004EDCD /* TagVersion.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A13DFD32821F0340004EDCD /* TagVersion.swift */; };
 		7A26334E2824B39F009F2F8A /* UIAlertAction+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A26334D2824B39F009F2F8A /* UIAlertAction+Extension.swift */; };
 		7A44F93D2828C25F00434A78 /* WriteAmiiboDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A44F93C2828C25F00434A78 /* WriteAmiiboDelegate.swift */; };
-		7A53DE982824A489006A4D12 /* UIColor+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A53DE972824A489006A4D12 /* UIColor+Extension.swift */; };
 		7A53DE9A2824A4B3006A4D12 /* UTType+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A53DE992824A4B3006A4D12 /* UTType+Extension.swift */; };
 		7A67E62A29F552570026EB70 /* amiitool in Frameworks */ = {isa = PBXBuildFile; productRef = 7A67E62929F552570026EB70 /* amiitool */; };
 		7A714A072822131200151A4D /* CloudKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7A714A062822131200151A4D /* CloudKit.framework */; };
@@ -33,23 +33,24 @@
 		7AC5F52529F6148E00DF3F39 /* AmiitoolError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AC5F52429F6148E00DF3F39 /* AmiitoolError.swift */; };
 		7ACBAC6728221BF500AF9E7B /* TagDumpError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7ACBAC6628221BF500AF9E7B /* TagDumpError.swift */; };
 		7AD4966B28221DCE00BC1E89 /* key_retail.bin in Resources */ = {isa = PBXBuildFile; fileRef = 7AD4966A28221DCE00BC1E89 /* key_retail.bin */; };
-		7AD4966D28221F5F00BC1E89 /* NTAG215TagError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AD4966C28221F5F00BC1E89 /* NTAG215TagError.swift */; };
+		7AD4966D28221F5F00BC1E89 /* AmiiboTagError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AD4966C28221F5F00BC1E89 /* AmiiboTagError.swift */; };
 		7AD8FEE628373CBC005442BC /* Amiitool.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AD8FEE528373CBC005442BC /* Amiitool.swift */; };
 		7AFF5E652829D8C90052A410 /* CollectionConcurrencyKit in Frameworks */ = {isa = PBXBuildFile; productRef = 7AFF5E642829D8C90052A410 /* CollectionConcurrencyKit */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		7A02468E29F633D300E437FA /* TagVersionError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagVersionError.swift; sourceTree = "<group>"; };
+		7A06E5662D6BED9300F92FCC /* en-AU */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "en-AU"; path = "en-AU.lproj/LaunchScreen.strings"; sourceTree = "<group>"; };
 		7A12F654281E3FAB00C538F4 /* NFCMiFareTag+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NFCMiFareTag+Extension.swift"; sourceTree = "<group>"; };
 		7A13DFC5282115BC0004EDCD /* unfixed-info.bin */ = {isa = PBXFileReference; lastKnownFileType = archive.macbinary; path = "unfixed-info.bin"; sourceTree = "<group>"; };
 		7A13DFC6282115BC0004EDCD /* locked-secret.bin */ = {isa = PBXFileReference; lastKnownFileType = archive.macbinary; path = "locked-secret.bin"; sourceTree = "<group>"; };
 		7A13DFC928211DBF0004EDCD /* TagDump.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagDump.swift; sourceTree = "<group>"; };
-		7A13DFCB28211E260004EDCD /* NTAG215Tag.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NTAG215Tag.swift; sourceTree = "<group>"; };
+		7A13DFCB28211E260004EDCD /* AmiiboTag.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AmiiboTag.swift; sourceTree = "<group>"; };
 		7A13DFCF2821EFF20004EDCD /* NFCMiFareTagError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NFCMiFareTagError.swift; sourceTree = "<group>"; };
-		7A13DFD32821F0340004EDCD /* NFCMiFareTagVersionInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NFCMiFareTagVersionInfo.swift; sourceTree = "<group>"; };
+		7A13DFD32821F0340004EDCD /* TagVersion.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagVersion.swift; sourceTree = "<group>"; };
 		7A26334D2824B39F009F2F8A /* UIAlertAction+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIAlertAction+Extension.swift"; sourceTree = "<group>"; };
 		7A361FFC281CDCC7007D8F9D /* Amiibomb.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Amiibomb.entitlements; sourceTree = "<group>"; };
 		7A44F93C2828C25F00434A78 /* WriteAmiiboDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WriteAmiiboDelegate.swift; sourceTree = "<group>"; };
-		7A53DE972824A489006A4D12 /* UIColor+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Extension.swift"; sourceTree = "<group>"; };
 		7A53DE992824A4B3006A4D12 /* UTType+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UTType+Extension.swift"; sourceTree = "<group>"; };
 		7A714A062822131200151A4D /* CloudKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CloudKit.framework; path = System/Library/Frameworks/CloudKit.framework; sourceTree = SDKROOT; };
 		7AADFD0328371EBB001A8382 /* NFCByte.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NFCByte.swift; sourceTree = "<group>"; };
@@ -66,7 +67,7 @@
 		7AC5F52429F6148E00DF3F39 /* AmiitoolError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AmiitoolError.swift; sourceTree = "<group>"; };
 		7ACBAC6628221BF500AF9E7B /* TagDumpError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagDumpError.swift; sourceTree = "<group>"; };
 		7AD4966A28221DCE00BC1E89 /* key_retail.bin */ = {isa = PBXFileReference; lastKnownFileType = archive.macbinary; path = key_retail.bin; sourceTree = "<group>"; };
-		7AD4966C28221F5F00BC1E89 /* NTAG215TagError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NTAG215TagError.swift; sourceTree = "<group>"; };
+		7AD4966C28221F5F00BC1E89 /* AmiiboTagError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AmiiboTagError.swift; sourceTree = "<group>"; };
 		7AD8FEE528373CBC005442BC /* Amiitool.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Amiitool.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -138,11 +139,11 @@
 				7A12F654281E3FAB00C538F4 /* NFCMiFareTag+Extension.swift */,
 				7A13DFCF2821EFF20004EDCD /* NFCMiFareTagError.swift */,
 				7A13DFC928211DBF0004EDCD /* TagDump.swift */,
-				7A13DFCB28211E260004EDCD /* NTAG215Tag.swift */,
-				7AD4966C28221F5F00BC1E89 /* NTAG215TagError.swift */,
 				7ACBAC6628221BF500AF9E7B /* TagDumpError.swift */,
-				7A13DFD32821F0340004EDCD /* NFCMiFareTagVersionInfo.swift */,
-				7A53DE972824A489006A4D12 /* UIColor+Extension.swift */,
+				7A13DFCB28211E260004EDCD /* AmiiboTag.swift */,
+				7AD4966C28221F5F00BC1E89 /* AmiiboTagError.swift */,
+				7A13DFD32821F0340004EDCD /* TagVersion.swift */,
+				7A02468E29F633D300E437FA /* TagVersionError.swift */,
 				7A53DE992824A4B3006A4D12 /* UTType+Extension.swift */,
 				7A26334D2824B39F009F2F8A /* UIAlertAction+Extension.swift */,
 				7AADFD0328371EBB001A8382 /* NFCByte.swift */,
@@ -193,7 +194,7 @@
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
 				LastSwiftUpdateCheck = 1330;
-				LastUpgradeCheck = 1330;
+				LastUpgradeCheck = 1500;
 				TargetAttributes = {
 					7AB42179281CD91100FB63C1 = {
 						CreatedOnToolsVersion = 13.3.1;
@@ -201,19 +202,21 @@
 				};
 			};
 			buildConfigurationList = 7AB42175281CD91100FB63C1 /* Build configuration list for PBXProject "Amiibomb" */;
-			compatibilityVersion = "Xcode 13.0";
-			developmentRegion = en;
+			developmentRegion = "en-AU";
 			hasScannedForEncodings = 0;
 			knownRegions = (
 				en,
 				Base,
+				"en-AU",
 			);
 			mainGroup = 7AB42171281CD91100FB63C1;
+			minimizedProjectReferenceProxies = 1;
 			packageReferences = (
 				7AFF5E632829D8C90052A410 /* XCRemoteSwiftPackageReference "CollectionConcurrencyKit" */,
 				7A67E62829F552570026EB70 /* XCRemoteSwiftPackageReference "amiitool" */,
 				7A02461D29F6213800E437FA /* XCRemoteSwiftPackageReference "Alamofire" */,
 			);
+			preferredProjectObjectVersion = 77;
 			productRefGroup = 7AB4217B281CD91100FB63C1 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -248,7 +251,7 @@
 				7AC5F52529F6148E00DF3F39 /* AmiitoolError.swift in Sources */,
 				7A13DFD02821EFF20004EDCD /* NFCMiFareTagError.swift in Sources */,
 				7AD8FEE628373CBC005442BC /* Amiitool.swift in Sources */,
-				7A53DE982824A489006A4D12 /* UIColor+Extension.swift in Sources */,
+				7A02468F29F633D400E437FA /* TagVersionError.swift in Sources */,
 				7AB42182281CD91100FB63C1 /* AmiibombVC.swift in Sources */,
 				7A12F655281E3FAB00C538F4 /* NFCMiFareTag+Extension.swift in Sources */,
 				7A13DFCA28211DBF0004EDCD /* TagDump.swift in Sources */,
@@ -257,12 +260,12 @@
 				7AB4217E281CD91100FB63C1 /* AppDelegate.swift in Sources */,
 				7AB42180281CD91100FB63C1 /* SceneDelegate.swift in Sources */,
 				7AB7C353281CE1D500D163B7 /* AmiiboAPI.swift in Sources */,
-				7A13DFCC28211E260004EDCD /* NTAG215Tag.swift in Sources */,
+				7A13DFCC28211E260004EDCD /* AmiiboTag.swift in Sources */,
 				7AB28F5A29F538C700769D51 /* ReadAmiiboDelegate.swift in Sources */,
 				7A26334E2824B39F009F2F8A /* UIAlertAction+Extension.swift in Sources */,
-				7A13DFD42821F0340004EDCD /* NFCMiFareTagVersionInfo.swift in Sources */,
+				7A13DFD42821F0340004EDCD /* TagVersion.swift in Sources */,
 				7AB7C355281CE1DF00D163B7 /* AmiiboResponse.swift in Sources */,
-				7AD4966D28221F5F00BC1E89 /* NTAG215TagError.swift in Sources */,
+				7AD4966D28221F5F00BC1E89 /* AmiiboTagError.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -273,6 +276,7 @@
 			isa = PBXVariantGroup;
 			children = (
 				7AB42189281CD91300FB63C1 /* Base */,
+				7A06E5662D6BED9300F92FCC /* en-AU */,
 			);
 			name = LaunchScreen.storyboard;
 			sourceTree = "<group>";
@@ -284,6 +288,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
@@ -316,6 +322,7 @@
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_NO_COMMON_BLOCKS = YES;
@@ -344,6 +351,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
@@ -376,6 +385,7 @@
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
@@ -400,12 +410,14 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = Amiibomb/Amiibomb.entitlements;
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = JDL5FY6SCC;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Amiibomb/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = Amiibomb;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.developer-tools";
 				INFOPLIST_KEY_LSSupportsOpeningDocumentsInPlace = YES;
 				INFOPLIST_KEY_NFCReaderUsageDescription = "Reading amiibo/tag information.";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -418,9 +430,13 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 3.1;
+				MARKETING_VERSION = 7.0;
 				PRODUCT_BUNDLE_IDENTIFIER = cloud.tavitian.amiibomb;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
@@ -433,12 +449,14 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = Amiibomb/Amiibomb.entitlements;
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = JDL5FY6SCC;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Amiibomb/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = Amiibomb;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.developer-tools";
 				INFOPLIST_KEY_LSSupportsOpeningDocumentsInPlace = YES;
 				INFOPLIST_KEY_NFCReaderUsageDescription = "Reading amiibo/tag information.";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -451,9 +469,13 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 3.1;
+				MARKETING_VERSION = 7.0;
 				PRODUCT_BUNDLE_IDENTIFIER = cloud.tavitian.amiibomb;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;

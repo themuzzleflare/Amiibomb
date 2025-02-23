@@ -9,5 +9,5 @@ import Foundation
 import UniformTypeIdentifiers
 
 extension UTType {
-  static let bin = UTType(filenameExtension: "bin")!
+    static let bin = UTType(filenameExtension: "bin")!
 }
