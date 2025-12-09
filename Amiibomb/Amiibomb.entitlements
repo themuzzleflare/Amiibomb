@@ -13,10 +13,6 @@
 		<string>CloudKit</string>
 		<string>CloudDocuments</string>
 	</array>
-	<key>com.apple.developer.kernel.extended-virtual-addressing</key>
-	<true/>
-	<key>com.apple.developer.kernel.increased-memory-limit</key>
-	<true/>
 	<key>com.apple.developer.nfc.readersession.formats</key>
 	<array>
 		<string>TAG</string>
@@ -30,10 +26,6 @@
 	<key>com.apple.security.application-groups</key>
 	<array>
 		<string>group.cloud.tavitian.amiibomb</string>
-	</array>
-	<key>keychain-access-groups</key>
-	<array>
-		<string>$(AppIdentifierPrefix)cloud.tavitian.amiibomb</string>
 	</array>
 </dict>
 </plist>

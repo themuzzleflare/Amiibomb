@@ -17,7 +17,7 @@ enum AmiiboAPI {
             .value
             .amiibo
     }
-    
+
     static func amiiboImage(amiiboObject: AmiiboObject) async throws -> Data {
         return try await AF.request(amiiboObject.image)
             .serializingData()

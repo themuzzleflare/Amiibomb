@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 77;
+	objectVersion = 90;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -17,10 +17,10 @@
 		7A13DFD02821EFF20004EDCD /* NFCMiFareTagError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A13DFCF2821EFF20004EDCD /* NFCMiFareTagError.swift */; };
 		7A13DFD42821F0340004EDCD /* TagVersion.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A13DFD32821F0340004EDCD /* TagVersion.swift */; };
 		7A26334E2824B39F009F2F8A /* UIAlertAction+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A26334D2824B39F009F2F8A /* UIAlertAction+Extension.swift */; };
+		7A324A442EDFCCFB00B66C28 /* libamiitool in Frameworks */ = {isa = PBXBuildFile; productRef = 7A324A432EDFCCFB00B66C28 /* libamiitool */; };
 		7A44F93D2828C25F00434A78 /* WriteAmiiboDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A44F93C2828C25F00434A78 /* WriteAmiiboDelegate.swift */; };
 		7A53DE9A2824A4B3006A4D12 /* UTType+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A53DE992824A4B3006A4D12 /* UTType+Extension.swift */; };
-		7A67E62A29F552570026EB70 /* amiitool in Frameworks */ = {isa = PBXBuildFile; productRef = 7A67E62929F552570026EB70 /* amiitool */; };
-		7A714A072822131200151A4D /* CloudKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7A714A062822131200151A4D /* CloudKit.framework */; };
+		7A762B002ED1749500432F6F /* AsyncAlgorithms in Frameworks */ = {isa = PBXBuildFile; productRef = 7A762AFF2ED1749500432F6F /* AsyncAlgorithms */; };
 		7AADFD0428371EBB001A8382 /* NFCByte.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AADFD0328371EBB001A8382 /* NFCByte.swift */; };
 		7AB28F5A29F538C700769D51 /* ReadAmiiboDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AB28F5929F538C700769D51 /* ReadAmiiboDelegate.swift */; };
 		7AB4217E281CD91100FB63C1 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AB4217D281CD91100FB63C1 /* AppDelegate.swift */; };
@@ -35,7 +35,6 @@
 		7AD4966B28221DCE00BC1E89 /* key_retail.bin in Resources */ = {isa = PBXBuildFile; fileRef = 7AD4966A28221DCE00BC1E89 /* key_retail.bin */; };
 		7AD4966D28221F5F00BC1E89 /* AmiiboTagError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AD4966C28221F5F00BC1E89 /* AmiiboTagError.swift */; };
 		7AD8FEE628373CBC005442BC /* Amiitool.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AD8FEE528373CBC005442BC /* Amiitool.swift */; };
-		7AFF5E652829D8C90052A410 /* CollectionConcurrencyKit in Frameworks */ = {isa = PBXBuildFile; productRef = 7AFF5E642829D8C90052A410 /* CollectionConcurrencyKit */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -52,7 +51,6 @@
 		7A361FFC281CDCC7007D8F9D /* Amiibomb.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Amiibomb.entitlements; sourceTree = "<group>"; };
 		7A44F93C2828C25F00434A78 /* WriteAmiiboDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WriteAmiiboDelegate.swift; sourceTree = "<group>"; };
 		7A53DE992824A4B3006A4D12 /* UTType+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UTType+Extension.swift"; sourceTree = "<group>"; };
-		7A714A062822131200151A4D /* CloudKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CloudKit.framework; path = System/Library/Frameworks/CloudKit.framework; sourceTree = SDKROOT; };
 		7AADFD0328371EBB001A8382 /* NFCByte.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NFCByte.swift; sourceTree = "<group>"; };
 		7AB28F5929F538C700769D51 /* ReadAmiiboDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReadAmiiboDelegate.swift; sourceTree = "<group>"; };
 		7AB4217A281CD91100FB63C1 /* Amiibomb.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Amiibomb.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -74,18 +72,27 @@
 /* Begin PBXFrameworksBuildPhase section */
 		7AB42177281CD91100FB63C1 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
 			files = (
-				7A714A072822131200151A4D /* CloudKit.framework in Frameworks */,
+				7A324A442EDFCCFB00B66C28 /* libamiitool in Frameworks */,
 				7A02461F29F6213800E437FA /* Alamofire in Frameworks */,
-				7A67E62A29F552570026EB70 /* amiitool in Frameworks */,
-				7AFF5E652829D8C90052A410 /* CollectionConcurrencyKit in Frameworks */,
+				7A762B002ED1749500432F6F /* AsyncAlgorithms in Frameworks */,
 			);
-			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		7A762AFD2ED173BE00432F6F /* Error */ = {
+			isa = PBXGroup;
+			children = (
+				7A13DFCF2821EFF20004EDCD /* NFCMiFareTagError.swift */,
+				7ACBAC6628221BF500AF9E7B /* TagDumpError.swift */,
+				7AD4966C28221F5F00BC1E89 /* AmiiboTagError.swift */,
+				7A02468E29F633D300E437FA /* TagVersionError.swift */,
+				7AC5F52429F6148E00DF3F39 /* AmiitoolError.swift */,
+			);
+			path = Error;
+			sourceTree = "<group>";
+		};
 		7A91C33D28221FF2002F379B /* Keys */ = {
 			isa = PBXGroup;
 			children = (
@@ -134,21 +141,17 @@
 		7AB7C356281CE29000D163B7 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				7A762AFD2ED173BE00432F6F /* Error */,
 				7AB7C352281CE1D500D163B7 /* AmiiboAPI.swift */,
 				7AB7C354281CE1DF00D163B7 /* AmiiboResponse.swift */,
 				7A12F654281E3FAB00C538F4 /* NFCMiFareTag+Extension.swift */,
-				7A13DFCF2821EFF20004EDCD /* NFCMiFareTagError.swift */,
 				7A13DFC928211DBF0004EDCD /* TagDump.swift */,
-				7ACBAC6628221BF500AF9E7B /* TagDumpError.swift */,
 				7A13DFCB28211E260004EDCD /* AmiiboTag.swift */,
-				7AD4966C28221F5F00BC1E89 /* AmiiboTagError.swift */,
 				7A13DFD32821F0340004EDCD /* TagVersion.swift */,
-				7A02468E29F633D300E437FA /* TagVersionError.swift */,
 				7A53DE992824A4B3006A4D12 /* UTType+Extension.swift */,
 				7A26334D2824B39F009F2F8A /* UIAlertAction+Extension.swift */,
 				7AADFD0328371EBB001A8382 /* NFCByte.swift */,
 				7AD8FEE528373CBC005442BC /* Amiitool.swift */,
-				7AC5F52429F6148E00DF3F39 /* AmiitoolError.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -156,7 +159,6 @@
 		CCB9A47CDE665E71800A086D /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				7A714A062822131200151A4D /* CloudKit.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -174,13 +176,11 @@
 			);
 			buildRules = (
 			);
-			dependencies = (
-			);
 			name = Amiibomb;
 			packageProductDependencies = (
-				7AFF5E642829D8C90052A410 /* CollectionConcurrencyKit */,
-				7A67E62929F552570026EB70 /* amiitool */,
 				7A02461E29F6213800E437FA /* Alamofire */,
+				7A762AFF2ED1749500432F6F /* AsyncAlgorithms */,
+				7A324A432EDFCCFB00B66C28 /* libamiitool */,
 			);
 			productName = Amiibomb;
 			productReference = 7AB4217A281CD91100FB63C1 /* Amiibomb.app */;
@@ -194,7 +194,7 @@
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
 				LastSwiftUpdateCheck = 1330;
-				LastUpgradeCheck = 1500;
+				LastUpgradeCheck = 2600;
 				TargetAttributes = {
 					7AB42179281CD91100FB63C1 = {
 						CreatedOnToolsVersion = 13.3.1;
@@ -212,11 +212,11 @@
 			mainGroup = 7AB42171281CD91100FB63C1;
 			minimizedProjectReferenceProxies = 1;
 			packageReferences = (
-				7AFF5E632829D8C90052A410 /* XCRemoteSwiftPackageReference "CollectionConcurrencyKit" */,
-				7A67E62829F552570026EB70 /* XCRemoteSwiftPackageReference "amiitool" */,
 				7A02461D29F6213800E437FA /* XCRemoteSwiftPackageReference "Alamofire" */,
+				7A762AFE2ED1749500432F6F /* XCRemoteSwiftPackageReference "swift-async-algorithms" */,
+				7A324A422EDFCCFB00B66C28 /* XCRemoteSwiftPackageReference "libamiitool" */,
 			);
-			preferredProjectObjectVersion = 77;
+			preferredProjectObjectVersion = 90;
 			productRefGroup = 7AB4217B281CD91100FB63C1 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -229,7 +229,6 @@
 /* Begin PBXResourcesBuildPhase section */
 		7AB42178281CD91100FB63C1 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
 			files = (
 				7A13DFC7282115BC0004EDCD /* unfixed-info.bin in Resources */,
 				7A13DFC8282115BC0004EDCD /* locked-secret.bin in Resources */,
@@ -237,14 +236,12 @@
 				7AB4218A281CD91300FB63C1 /* LaunchScreen.storyboard in Resources */,
 				7AB42187281CD91300FB63C1 /* Assets.xcassets in Resources */,
 			);
-			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		7AB42176281CD91100FB63C1 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
 			files = (
 				7A44F93D2828C25F00434A78 /* WriteAmiiboDelegate.swift in Sources */,
 				7A53DE9A2824A4B3006A4D12 /* UTType+Extension.swift in Sources */,
@@ -267,7 +264,6 @@
 				7AB7C355281CE1DF00D163B7 /* AmiiboResponse.swift in Sources */,
 				7AD4966D28221F5F00BC1E89 /* AmiiboTagError.swift in Sources */,
 			);
-			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
@@ -284,7 +280,7 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
-		7AB4218C281CD91300FB63C1 /* Debug */ = {
+		7AB4218C281CD91300FB63C1 /* Debug configuration for PBXProject "Amiibomb" */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -320,6 +316,7 @@
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEVELOPMENT_TEAM = JDL5FY6SCC;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
 				ENABLE_USER_SCRIPT_SANDBOXING = YES;
@@ -342,12 +339,13 @@
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
 			name = Debug;
 		};
-		7AB4218D281CD91300FB63C1 /* Release */ = {
+		7AB4218D281CD91300FB63C1 /* Release configuration for PBXProject "Amiibomb" */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -383,6 +381,7 @@
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEVELOPMENT_TEAM = JDL5FY6SCC;
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_USER_SCRIPT_SANDBOXING = YES;
@@ -398,13 +397,14 @@
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
 				SWIFT_COMPILATION_MODE = wholemodule;
 				SWIFT_OPTIMIZATION_LEVEL = "-O";
 				VALIDATE_PRODUCT = YES;
 			};
 			name = Release;
 		};
-		7AB4218F281CD91300FB63C1 /* Debug */ = {
+		7AB4218F281CD91300FB63C1 /* Debug configuration for PBXNativeTarget "Amiibomb" */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
@@ -413,7 +413,6 @@
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = JDL5FY6SCC;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Amiibomb/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = Amiibomb;
@@ -430,7 +429,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 7.0;
+				MARKETING_VERSION = 10.0;
 				PRODUCT_BUNDLE_IDENTIFIER = cloud.tavitian.amiibomb;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -443,7 +442,7 @@
 			};
 			name = Debug;
 		};
-		7AB42190281CD91300FB63C1 /* Release */ = {
+		7AB42190281CD91300FB63C1 /* Release configuration for PBXNativeTarget "Amiibomb" */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
@@ -452,7 +451,6 @@
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = JDL5FY6SCC;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Amiibomb/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = Amiibomb;
@@ -469,7 +467,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 7.0;
+				MARKETING_VERSION = 10.0;
 				PRODUCT_BUNDLE_IDENTIFIER = cloud.tavitian.amiibomb;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -488,19 +486,17 @@
 		7AB42175281CD91100FB63C1 /* Build configuration list for PBXProject "Amiibomb" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				7AB4218C281CD91300FB63C1 /* Debug */,
-				7AB4218D281CD91300FB63C1 /* Release */,
+				7AB4218C281CD91300FB63C1 /* Debug configuration for PBXProject "Amiibomb" */,
+				7AB4218D281CD91300FB63C1 /* Release configuration for PBXProject "Amiibomb" */,
 			);
-			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
 		7AB4218E281CD91300FB63C1 /* Build configuration list for PBXNativeTarget "Amiibomb" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				7AB4218F281CD91300FB63C1 /* Debug */,
-				7AB42190281CD91300FB63C1 /* Release */,
+				7AB4218F281CD91300FB63C1 /* Debug configuration for PBXNativeTarget "Amiibomb" */,
+				7AB42190281CD91300FB63C1 /* Release configuration for PBXNativeTarget "Amiibomb" */,
 			);
-			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
@@ -511,23 +507,23 @@
 			repositoryURL = "https://github.com/Alamofire/Alamofire.git";
 			requirement = {
 				kind = upToNextMajorVersion;
-				minimumVersion = 5.0.0;
+				minimumVersion = 5.10.2;
 			};
 		};
-		7A67E62829F552570026EB70 /* XCRemoteSwiftPackageReference "amiitool" */ = {
+		7A324A422EDFCCFB00B66C28 /* XCRemoteSwiftPackageReference "libamiitool" */ = {
 			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/themuzzleflare/amiitool";
+			repositoryURL = "https://github.com/themuzzleflare/libamiitool";
 			requirement = {
 				branch = main;
 				kind = branch;
 			};
 		};
-		7AFF5E632829D8C90052A410 /* XCRemoteSwiftPackageReference "CollectionConcurrencyKit" */ = {
+		7A762AFE2ED1749500432F6F /* XCRemoteSwiftPackageReference "swift-async-algorithms" */ = {
 			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/JohnSundell/CollectionConcurrencyKit.git";
+			repositoryURL = "https://github.com/apple/swift-async-algorithms.git";
 			requirement = {
 				kind = upToNextMajorVersion;
-				minimumVersion = 0.2.0;
+				minimumVersion = 1.1.1;
 			};
 		};
 /* End XCRemoteSwiftPackageReference section */
@@ -538,15 +534,15 @@
 			package = 7A02461D29F6213800E437FA /* XCRemoteSwiftPackageReference "Alamofire" */;
 			productName = Alamofire;
 		};
-		7A67E62929F552570026EB70 /* amiitool */ = {
+		7A324A432EDFCCFB00B66C28 /* libamiitool */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 7A67E62829F552570026EB70 /* XCRemoteSwiftPackageReference "amiitool" */;
-			productName = amiitool;
+			package = 7A324A422EDFCCFB00B66C28 /* XCRemoteSwiftPackageReference "libamiitool" */;
+			productName = libamiitool;
 		};
-		7AFF5E642829D8C90052A410 /* CollectionConcurrencyKit */ = {
+		7A762AFF2ED1749500432F6F /* AsyncAlgorithms */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 7AFF5E632829D8C90052A410 /* XCRemoteSwiftPackageReference "CollectionConcurrencyKit" */;
-			productName = CollectionConcurrencyKit;
+			package = 7A762AFE2ED1749500432F6F /* XCRemoteSwiftPackageReference "swift-async-algorithms" */;
+			productName = AsyncAlgorithms;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

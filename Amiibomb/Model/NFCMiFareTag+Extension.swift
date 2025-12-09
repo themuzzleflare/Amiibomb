@@ -10,23 +10,32 @@ import CoreNFC
 
 extension NFCMiFareTag {
     func getVersion() async throws -> TagVersion {
-        let data = try await sendMiFareCommand(commandPacket: Data([NFCByte.cmdGetVersion.rawValue]))
+        let data: Data = try await sendMiFareCommand(commandPacket: .init([NFCByte.cmdGetVersion.rawValue]))
         
-        return try TagVersion(data: data)
+        return try .init(data: data)
     }
     
     func fastRead(start: UInt8, end: UInt8, batchSize: UInt8) async throws -> Data {
-        return try await fastReadInternal(start: start, end: end, batchSize: batchSize, accumulatedData: Data())
+        return try await fastReadInternal(start: start,
+                                          end: end,
+                                          batchSize: batchSize,
+                                          accumulatedData: .init())
     }
     
-    private func fastReadInternal(start: UInt8, end: UInt8, batchSize: UInt8, accumulatedData: Data) async throws -> Data {
-        let batchEnd = min(start + batchSize - 1, end)
+    private func fastReadInternal(start: UInt8,
+                                  end: UInt8,
+                                  batchSize: UInt8,
+                                  accumulatedData: Data) async throws -> Data {
+        let batchEnd: UInt8 = min(start + batchSize - 1, end)
         
-        let data = try await sendMiFareCommand(commandPacket: Data([NFCByte.cmdFastRead.rawValue, start, batchEnd]))
-        let accumulatedData = accumulatedData + data
+        let data: Data = try await sendMiFareCommand(commandPacket: .init([NFCByte.cmdFastRead.rawValue, start, batchEnd]))
+        let accumulatedData: Data = accumulatedData + data
         
         if batchEnd < end {
-            return try await self.fastReadInternal(start: batchEnd + 1, end: end, batchSize: batchSize, accumulatedData: accumulatedData)
+            return try await self.fastReadInternal(start: batchEnd + 1,
+                                                   end: end,
+                                                   batchSize: batchSize,
+                                                   accumulatedData: accumulatedData)
         } else {
             return accumulatedData
         }
@@ -37,9 +46,9 @@ extension NFCMiFareTag {
             throw NFCMiFareTagError.invalidData
         }
         
-        let commandPacket = Data([NFCByte.cmdWrite.rawValue, UInt8(page)]) + data
+        let commandPacket: Data = .init([NFCByte.cmdWrite.rawValue, UInt8(page)]) + data
         
-        let data = try await sendMiFareCommand(commandPacket: commandPacket)
+        let data: Data = try await sendMiFareCommand(commandPacket: commandPacket)
         
         guard data.count == 1 else {
             throw NFCMiFareTagError.unknownError
@@ -64,16 +73,19 @@ extension NFCMiFareTag {
     func write(batch: [(page: Int, data: Data)],
                session: NFCTagReaderSession,
                progressCounter: Float = 0) async throws {
-        if let write = batch.first {
-            let progress = progressCounter / 135
-            let progressString = String(format: "%.2f", progress * 100) + "%"
-            let alertMessage = "Writing: \(progressString)"
+        if let write: (page: Int, data: Data) = batch.first {
+            let progress: Float = progressCounter / 135
+            let progressString: String = .init(format: "%.2f", progress * 100) + "%"
+            let alertMessage: String = "Writing: \(progressString)"
             
             session.alertMessage = alertMessage
+#if DEBUG
             print(alertMessage)
+#endif
             
-            try await self.write(page: write.page, data: write.data)
-            try await self.write(batch: Array(batch[1..<batch.count]),
+            try await self.write(page: write.page,
+                                 data: write.data)
+            try await self.write(batch: .init(batch[1..<batch.count]),
                                  session: session,
                                  progressCounter: progressCounter + 1)
         } else {
