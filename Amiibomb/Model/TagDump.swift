@@ -17,11 +17,11 @@ struct TagDump {
     }
 
     var headHex: String {
-        return data[84..<88].map { String(format: "%02hhx", $0) }.joined()
+        return data[84..<88].map { .init(format: "%02hhx", $0) }.joined()
     }
 
     var tailHex: String {
-        return data[88..<92].map { String(format: "%02hhx", $0) }.joined()
+        return data[88..<92].map { .init(format: "%02hhx", $0) }.joined()
     }
 
     var uid: Data {
@@ -50,11 +50,11 @@ struct TagDump {
     func patchedDump(withUID newUID: Data) throws -> TagDump {
         guard newUID.count == 9 else { throw TagDumpError.invalidUID }
 
-        guard let masterKey: String = Bundle.main.path(forResource: "key_retail", ofType: "bin") else {
+        guard let masterKeyPath: String = Bundle.main.path(forResource: "key_retail", ofType: "bin") else {
             throw TagDumpError.keyFileNotFound
         }
 
-        let amiitool: Amiitool = try .init(path: masterKey)
+        let amiitool: Amiitool = try .init(path: masterKeyPath)
 
         var decrypted: Data = try amiitool.unpack(data)
         decrypted.replaceSubrange(468..<476, with: newUID.subdata(in: 0..<8))

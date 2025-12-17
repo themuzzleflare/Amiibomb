@@ -96,8 +96,8 @@
 		7A91C33D28221FF2002F379B /* Keys */ = {
 			isa = PBXGroup;
 			children = (
-				7A13DFC6282115BC0004EDCD /* locked-secret.bin */,
 				7A13DFC5282115BC0004EDCD /* unfixed-info.bin */,
+				7A13DFC6282115BC0004EDCD /* locked-secret.bin */,
 				7AD4966A28221DCE00BC1E89 /* key_retail.bin */,
 			);
 			path = Keys;
@@ -429,7 +429,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 10.0;
+				MARKETING_VERSION = 11.0;
 				PRODUCT_BUNDLE_IDENTIFIER = cloud.tavitian.amiibomb;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -467,7 +467,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 10.0;
+				MARKETING_VERSION = 11.0;
 				PRODUCT_BUNDLE_IDENTIFIER = cloud.tavitian.amiibomb;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";

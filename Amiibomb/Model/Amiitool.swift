@@ -13,7 +13,7 @@ typealias OriginalTag = UnsafePointer<UInt8>
 typealias ModifiedTag = UnsafeMutablePointer<UInt8>
 
 struct Amiitool {
-    let NTAG215_SIZE = 540
+    let NTAG215_SIZE: Int = 540
     let amiiboKeys: AmiiboKeys = .allocate(capacity: 1)
 
     init(path: String) throws {
